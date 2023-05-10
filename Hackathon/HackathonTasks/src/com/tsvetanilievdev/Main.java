@@ -2,7 +2,6 @@ package com.tsvetanilievdev;
 import java.util.Arrays;
 
 public class Main {
-
     //Strings
     public static String abbreviate(String source, int maxLength) {
         return source.substring(0,maxLength) + "...";
@@ -53,5 +52,4 @@ public class Main {
 
         System.out.println("This will cause merge conflict");
     }
-
 }
