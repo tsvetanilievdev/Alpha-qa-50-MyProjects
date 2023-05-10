@@ -50,6 +50,6 @@ public class Main {
 
         System.out.println(Arrays.toString(destinationArray));
 
-        System.out.println("This will cause merge conflict");
+        System.out.println("This will cause merge conflict - SOLVED");
     }
 }
