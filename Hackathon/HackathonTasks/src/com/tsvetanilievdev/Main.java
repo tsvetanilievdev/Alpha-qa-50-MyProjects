@@ -50,4 +50,6 @@ public class Main {
 
         System.out.println(Arrays.toString(destinationArray));
     }
+    
+    System.out.println("First change")
 }
