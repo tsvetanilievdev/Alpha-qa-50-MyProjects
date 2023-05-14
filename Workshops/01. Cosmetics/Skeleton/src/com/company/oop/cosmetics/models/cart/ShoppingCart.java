@@ -39,7 +39,7 @@ public class ShoppingCart {
     }
     
     public double totalPrice() {
-        double total = 0;
+        double total = 0.00;
 
         for (Product product: this.productList) {
             total += product.getPrice();

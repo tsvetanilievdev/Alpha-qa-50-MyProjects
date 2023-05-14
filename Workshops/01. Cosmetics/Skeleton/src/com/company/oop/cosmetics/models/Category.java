@@ -17,14 +17,15 @@ public class Category {
         this.productsList = new ArrayList<>() {
         };
     }
-
-    public void setName(String name){
+    private String getName(){
+        return this.name;
+    }
+    private void setName(String name){
         if(name == null) {
             throw new IllegalArgumentException("Name field cannot be null!");
         }else if(name.length() < MIN_CATEGORY_NAME_LENGTH || name.length() > MAX_CATEGORY_NAME_LENGTH){
             throw new IllegalArgumentException(String.format("Name field must be between %d and %d characters long!",MIN_CATEGORY_NAME_LENGTH, MAX_CATEGORY_NAME_LENGTH));
         }
-
         this.name = name;
     }
     
@@ -41,8 +42,6 @@ public class Category {
     
     public void removeProduct(Product product) {
         int index = this.productsList.indexOf(product);
-        System.out.println("Index " + index);
-        System.out.println(product);
         if(index == -1){
             throw new IllegalArgumentException("There is no such product in the category!");
         }
@@ -50,7 +49,7 @@ public class Category {
     }
     
     public String print() {
-        String result = String.format("#Category: %s",this.name);
+        String result = String.format("#Category: %s",this.getName());
 
         if(this.productsList.size() > 0) {
             for (Product product: this.productsList) {
