@@ -13,7 +13,7 @@ public class CosmeticsFactoryImpl implements CosmeticsFactory {
     }
 
     public Product createProduct(String name, String brand, double price, String gender) {
-        Product product = new Product(name,brand, price, GenderType.valueOf(gender));
+        Product product = new Product(name,brand, price, GenderType.valueOf(gender.toUpperCase()));
         return product;
     }
     
