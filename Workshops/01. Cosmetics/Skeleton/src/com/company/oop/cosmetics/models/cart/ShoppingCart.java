@@ -10,6 +10,7 @@ public class ShoppingCart {
     private List<Product> productList;
     
     public ShoppingCart() {
+        productList = new ArrayList<Product>();
     }
     
     public List<Product> getProductList() {
@@ -17,19 +18,28 @@ public class ShoppingCart {
     }
     
     public void addProduct(Product product) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        this.productList.add(product);
     }
     
     public void removeProduct(Product product) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        int index = this.productList.indexOf(product);
+        while(index != -1) {
+            this.productList.remove(product);
+            index = this.productList.indexOf(product);
+        }
     }
     
     public boolean containsProduct(Product product) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return this.productList.contains(product);
     }
     
     public double totalPrice() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        double total = 0;
+
+        for (Product product: this.productList) {
+            total += product.getPrice();
+        }
+        return total;
     }
     
 }
