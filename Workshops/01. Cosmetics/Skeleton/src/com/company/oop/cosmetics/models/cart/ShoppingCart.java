@@ -18,18 +18,23 @@ public class ShoppingCart {
     }
     
     public void addProduct(Product product) {
+        if(product == null) {
+            throw new IllegalArgumentException("The product cannot be null!");
+        }
         this.productList.add(product);
     }
     
     public void removeProduct(Product product) {
-        int index = this.productList.indexOf(product);
-        while(index != -1) {
-            this.productList.remove(product);
-            index = this.productList.indexOf(product);
+        if(product == null) {
+            throw new IllegalArgumentException("The product cannot be null!");
         }
+        this.productList.remove(product);
     }
     
     public boolean containsProduct(Product product) {
+        if(product == null) {
+            throw new IllegalArgumentException("The product cannot be null!");
+        }
         return this.productList.contains(product);
     }
     
