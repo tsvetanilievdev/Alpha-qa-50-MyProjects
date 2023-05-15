@@ -41,6 +41,7 @@ public class Category {
     }
     
     public void removeProduct(Product product) {
+//        if(!productsList.contains(product)) { "same code below"}
         int index = this.productsList.indexOf(product);
         if(index == -1){
             throw new IllegalArgumentException("There is no such product in the category!");
