@@ -3,22 +3,14 @@ import java.time.LocalDate;
 public class Main {
 
     public static void main(String[] args) {
-        BoardItem item = new BoardItem("Registration doesn't work", LocalDate.now().plusDays(2));
-        item.advanceStatus();
-        BoardItem anotherItem = new BoardItem("Encrypt user data", LocalDate.now().plusDays(10));
+        BoardItem item1 = new BoardItem("Implement login/logout", LocalDate.now().plusDays(3));
+        BoardItem item2 = new BoardItem("Secure admin endpoints", LocalDate.now().plusDays(5));
 
-        Board.items.add(item);
-        Board.items.add(anotherItem);
+        Board board = new Board();
 
-        Board.items.add(item);
-        Board.items.add(anotherItem);
-
-        for (BoardItem boardItem : Board.items) {
-            boardItem.advanceStatus();
-        }
-
-        for (BoardItem boardItem : Board.items) {
-            System.out.println(boardItem.viewInfo());
-        }
+        board.addItem(item1);
+        board.addItem(item2);
+        board.addItem(item1);
+        System.out.println(board.totalItems()); // count: 2
     }
 }

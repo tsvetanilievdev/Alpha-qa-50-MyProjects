@@ -14,12 +14,14 @@ public class EventLog {
             throw new IllegalArgumentException("Description should not be empty!");
         }
         this.description = description;
-
         this.timestamp = LocalDateTime.now();
     }
 
     public String getDescription(){
         return description;
+    }
+    public LocalDateTime getDate(){
+        return timestamp;
     }
 
     public String viewInfo(){
