@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class Board {
-    private static ArrayList<BoardItem> items = new ArrayList<>();
-
+    private ArrayList<BoardItem> items;
     public Board(){
+        items = new ArrayList<>();
     }
 
     public void addItem(BoardItem item){
