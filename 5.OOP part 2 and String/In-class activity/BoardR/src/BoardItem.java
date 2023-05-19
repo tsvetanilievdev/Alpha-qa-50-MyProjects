@@ -11,20 +11,16 @@ public class BoardItem {
     private String title;
     private LocalDate dueDate;
     private Status status;
-    private Status[] statusArrayList;
     private static ArrayList<EventLog> eventLogArrayList;
 
     public BoardItem(String title, LocalDate dueDate){
+        validateTitle(title);
+        validateDueDate(dueDate);
+        this.title = title;
+        this.dueDate = dueDate;
         this.status = Status.Open;
-        this.statusArrayList = Status.values();
         this.eventLogArrayList = new ArrayList<>();
-        EventLog firstLog = new EventLog(String.format("Item created: '%s', [%s | %s]", title, status, dueDate));
-        eventLogArrayList.add(firstLog);
-
-        setTitle(title);
-        setDueDate(dueDate);
-
-
+        eventLogArrayList.add(new EventLog(String.format("Item created: '%s', [%s | %s]", title, status, dueDate)));
     }
 
     public String getTitle() {
@@ -38,56 +34,34 @@ public class BoardItem {
     }
 
     public void setTitle(String title) {
-        if(title.length() < BOARD_ITEM_MIN_LENGTH || title.length() > BOARD_ITEM_MAX_LENGTH) {
-            throw new IllegalArgumentException(TITLE_ERROR);
-        }
-        if(this.title != null){
-            String lastTitle = this.title;
-            EventLog log = new EventLog(String.format("Title changed from %s to %s", lastTitle, title));
-            eventLogArrayList.add(log);
-        }
-
+        validateTitle(title);
+        eventLogArrayList.add(new EventLog(String.format("Title changed from %s to %s", this.title, title)));
         this.title = title;
     }
 
     public void setDueDate(LocalDate dueDate){
-        if(!LocalDate.now().isBefore(dueDate)){
-            throw new IllegalArgumentException(DATE_ERROR);
-        }
-        if(this.dueDate != null){
-            LocalDate lastDueDate = this.dueDate;
-            EventLog log = new EventLog(String.format("DueDate changed from %s to %s", lastDueDate, dueDate));
-            eventLogArrayList.add(log);
-        }
+        validateDueDate(dueDate);
+        eventLogArrayList.add(new EventLog(String.format("DueDate changed from %s to %s", this.dueDate, dueDate)));
         this.dueDate = dueDate;
     }
 
     public void revertStatus(){
-        int currOrdinal = this.status.ordinal();
-        int prevOrdinal = Math.max(currOrdinal - 1, 0);
-        this.status = this.statusArrayList[prevOrdinal];
-        if(currOrdinal == 0){
-            EventLog log = new EventLog("Can't revert, already at Open");
-            eventLogArrayList.add(log);
+        if(this.status == Status.values()[0]){
+            eventLogArrayList.add(new EventLog("Can't revert, already at Open"));
         }else {
-            EventLog log = new EventLog(String.format("Status changed from %s to %s",
-                    this.statusArrayList[currOrdinal], this.statusArrayList[prevOrdinal]));
-            eventLogArrayList.add(log);
+            this.status = Status.values()[this.status.ordinal() - 1];
+            eventLogArrayList.add(new EventLog(String.format("Status changed from %s to %s",
+                    Status.values()[status.ordinal() + 1], this.status)));
         }
     }
 
     public void advanceStatus(){
-        int currOrdinal = this.status.ordinal();
-        int nextOrdinal = Math.min(currOrdinal + 1, this.statusArrayList.length - 1);
-        this.status = this.statusArrayList[nextOrdinal];
-
-        if(currOrdinal == this.statusArrayList.length - 1){
-            EventLog log = new EventLog("Can't advance, already at Verified");
-            eventLogArrayList.add(log);
+        if(this.status.ordinal() == Status.values().length - 1){
+            eventLogArrayList.add(new EventLog("Can't advance, already at Verified"));
         }else {
-            EventLog log = new EventLog(String.format("Status changed from %s to %s",
-                    this.statusArrayList[currOrdinal], this.statusArrayList[nextOrdinal]));
-            eventLogArrayList.add(log);
+            this.status = Status.values()[this.status.ordinal() + 1];
+            eventLogArrayList.add(new EventLog(String.format("Status changed from %s to %s",
+                    Status.values()[status.ordinal() - 1], this.status)));
         }
     }
 
@@ -100,11 +74,14 @@ public class BoardItem {
         return String.format("%s, [%s | %s]", this.title, this.status, this.dueDate);
     }
 
-    private void createFirstLog(){
-        EventLog log = new EventLog();
+    private static void validateTitle(String title) {
+        if(title.length() < BOARD_ITEM_MIN_LENGTH || title.length() > BOARD_ITEM_MAX_LENGTH) {
+            throw new IllegalArgumentException(TITLE_ERROR);
+        }
     }
-    private void createLogBoardItemConstructed(String title){
-        EventLog log = new EventLog();
-        eventLogArrayList.add(log);
+    private static void validateDueDate(LocalDate dueDate) {
+        if(!LocalDate.now().isBefore(dueDate)){
+            throw new IllegalArgumentException(DATE_ERROR);
+        }
     }
 }
