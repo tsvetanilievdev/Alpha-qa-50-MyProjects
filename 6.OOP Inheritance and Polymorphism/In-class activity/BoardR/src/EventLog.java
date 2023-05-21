@@ -29,4 +29,5 @@ public class EventLog {
     public String viewInfo() {
         return String.format("[%s] %s", timestamp.format(DateTimeFormatter.ofPattern("dd-MMMM-yyyy HH:mm:ss", Locale.ENGLISH)), description);
     }
+
 }

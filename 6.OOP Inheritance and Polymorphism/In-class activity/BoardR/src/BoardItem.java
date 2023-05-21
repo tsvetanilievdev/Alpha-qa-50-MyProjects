@@ -10,15 +10,15 @@ public class BoardItem {
 
     private String title;
     private LocalDate dueDate;
-    private Status status;
-    private static ArrayList<EventLog> eventLogArrayList;
+    Status status;
+    ArrayList<EventLog> eventLogArrayList;
 
     public BoardItem(String title, LocalDate dueDate){
         validateTitle(title);
         validateDueDate(dueDate);
         this.title = title;
         this.dueDate = dueDate;
-        this.status = Status.Open;
+        this.status = initialStatus();
         this.eventLogArrayList = new ArrayList<>();
         eventLogArrayList.add(new EventLog(String.format("Item created: '%s', [%s | %s]", title, status, dueDate)));
     }
@@ -83,5 +83,9 @@ public class BoardItem {
         if(!LocalDate.now().isBefore(dueDate)){
             throw new IllegalArgumentException(DATE_ERROR);
         }
+    }
+
+    public Status initialStatus(){
+        return Status.Open;
     }
 }
