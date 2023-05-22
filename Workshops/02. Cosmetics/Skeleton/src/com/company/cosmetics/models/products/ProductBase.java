@@ -63,7 +63,7 @@ public class ProductBase implements Product {
 
     @Override
     public String print() {
-        return String.format("%s %s %.2f %s", getName(), getBrand(), getPrice(),getGender());
+        return String.format("#%s %s%n #Price: $%.2f%n #Gender: %s%n", getName(), getBrand(), getPrice(),getGender());
     }
 
     void validateLength(String property, String propertyText, int MIN_PROPERTY_LENGTH, int MAX_PROPERTY_LENGTH) {

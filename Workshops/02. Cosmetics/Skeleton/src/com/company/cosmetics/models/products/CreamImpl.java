@@ -15,11 +15,8 @@ public class CreamImpl extends ProductBase implements Cream {
 
     @Override
     public String print() {
-        return String.format("#%s %s%n #Price: $%.2f%n #Gender: %s%n #Scent: %s%n ===",
-                super.getName(),
-                super.getBrand(),
-                super.getPrice(),
-                super.getGender(),
+        return String.format("%s #Scent: %s%n ===",
+                super.print(),
                 getScent()
         );
     }

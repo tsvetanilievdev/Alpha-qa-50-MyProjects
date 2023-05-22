@@ -33,11 +33,8 @@ public class ShampooImpl extends ProductBase implements Shampoo {
 
     @Override
     public String print() {
-        return String.format("#%s %s%n #Price: $%.2f%n #Gender: %s%n #Milliliters: %d%n #Usage: %s%n ===",
-                super.getName(),
-                super.getBrand(),
-                super.getPrice(),
-                super.getGender(),
+        return String.format("%s #Milliliters: %d%n #Usage: %s%n ===",
+                super.print(),
                 getMilliliters(),
                 getUsage()
         );
