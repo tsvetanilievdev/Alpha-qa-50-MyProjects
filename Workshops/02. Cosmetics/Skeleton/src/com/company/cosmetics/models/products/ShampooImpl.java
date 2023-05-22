@@ -19,7 +19,7 @@ public class ShampooImpl extends ProductBase implements Shampoo {
         return this.milliliters;
     }
 
-    public void setMilliliters(int milliliters) {
+    private void setMilliliters(int milliliters) {
         super.validateNegativeValue("milliliters",milliliters);
         this.milliliters = milliliters;
     }
@@ -27,7 +27,7 @@ public class ShampooImpl extends ProductBase implements Shampoo {
     public UsageType getUsage() {
         return this.usageType;
     }
-    public void setUsageType(UsageType usageType) {
+    private void setUsageType(UsageType usageType) {
         this.usageType = usageType;
     }
 
