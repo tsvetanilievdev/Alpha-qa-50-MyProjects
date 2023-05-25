@@ -57,8 +57,8 @@ public class AgencyRepositoryImpl implements AgencyRepository {
 
     @Override
     public Journey findJourneyById(int id) {
-        for (Journey journey: journeys) {
-            if(journey.getId() == id){
+        for (Journey journey : journeys) {
+            if (journey.getId() == id) {
                 return journey;
             }
         }
@@ -67,8 +67,8 @@ public class AgencyRepositoryImpl implements AgencyRepository {
 
     @Override
     public Ticket findTicketById(int id) {
-        for (Ticket ticket: tickets) {
-            if(ticket.getId() == id){
+        for (Ticket ticket : tickets) {
+            if (ticket.getId() == id) {
                 return ticket;
             }
         }
@@ -77,7 +77,7 @@ public class AgencyRepositoryImpl implements AgencyRepository {
 
     @Override
     public Airplane createAirplane(int passengerCapacity, double pricePerKilometer, boolean hasFreeFood) {
-        Airplane airplane = new AirplaneImpl(++nextId, passengerCapacity, pricePerKilometer,hasFreeFood);
+        Airplane airplane = new AirplaneImpl(++nextId, passengerCapacity, pricePerKilometer, hasFreeFood);
         this.vehicles.add(airplane);
         return airplane;
     }
@@ -91,21 +91,21 @@ public class AgencyRepositoryImpl implements AgencyRepository {
 
     @Override
     public Train createTrain(int passengerCapacity, double pricePerKilometer, int carts) {
-        Train train = new TrainImpl(++nextId,passengerCapacity,pricePerKilometer,carts);
+        Train train = new TrainImpl(++nextId, passengerCapacity, pricePerKilometer, carts);
         this.vehicles.add(train);
         return train;
     }
 
     @Override
     public Journey createJourney(String startLocation, String destination, int distance, Vehicle vehicle) {
-        Journey journey = new JourneyImpl(++nextId, startLocation, destination, distance,vehicle);
+        Journey journey = new JourneyImpl(++nextId, startLocation, destination, distance, vehicle);
         this.journeys.add(journey);
         return journey;
     }
 
     @Override
     public Ticket createTicket(Journey journey, double costs) {
-        Ticket ticket = new TicketImpl(++nextId,journey,costs);
+        Ticket ticket = new TicketImpl(++nextId, journey, costs);
         this.tickets.add(ticket);
         return ticket;
     }

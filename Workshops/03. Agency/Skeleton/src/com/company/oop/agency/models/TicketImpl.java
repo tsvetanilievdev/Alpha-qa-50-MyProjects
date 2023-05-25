@@ -8,18 +8,20 @@ public class TicketImpl implements Ticket {
     private int id;
     private double costs;
     private Journey journey;
+
     public TicketImpl(int id, Journey journey, double costs) {
         this.id = id;
         this.journey = journey;
         setCosts(costs);
     }
 
-    private void setCosts(double costs){
-        if(costs < 0){
+    private void setCosts(double costs) {
+        if (costs < 0) {
             throw new InvalidUserInputException("Costs cannot be negative number!");
         }
         this.costs = costs;
     }
+
     @Override
     public int getId() {
         return id;
@@ -28,7 +30,7 @@ public class TicketImpl implements Ticket {
     @Override
     public String getAsString() {
         return String.format("Ticket ----%nDestination: %s%nPrice: %s",
-                getJourney().getDestination(),calculatePrice());
+                getJourney().getDestination(), calculatePrice());
     }
 
     @Override
