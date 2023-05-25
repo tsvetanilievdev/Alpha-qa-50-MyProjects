@@ -32,7 +32,7 @@ public class AirplaneImpl extends VehicleBase implements Airplane, Vehicle {
 
     @Override
     public String getAsString() {
-        return String.format("Airplane ----%nPassenger capacity: %s%nPrice per kilometer: %s%nVehicle type: %s%nHas free food: %s",
+        return String.format("Airplane ----%nPassenger capacity: %s%nPrice per kilometer: %.2f%nVehicle type: %s%nHas free food: %s%n",
                 super.getPassengerCapacity(),
                 super.getPricePerKilometer(),
                 super.getType(),
@@ -42,14 +42,14 @@ public class AirplaneImpl extends VehicleBase implements Airplane, Vehicle {
     @Override
     protected void validatePassengerCapacity(int passengerCapacity) {
         if (passengerCapacity < PASSENGER_MIN_VALUE || passengerCapacity > PASSENGER_MAX_VALUE) {
-            throw new IllegalArgumentException(String.format("The airplane cannot have less than %d passengers or more than %d passengers.", PASSENGER_MIN_VALUE, PASSENGER_MAX_VALUE));
+            throw new IllegalArgumentException(String.format("An airplane cannot have less than %d passengers or more than %d passengers.", PASSENGER_MIN_VALUE, PASSENGER_MAX_VALUE));
         }
     }
 
     @Override
     protected void validatePricePerKilometer(double pricePerKilometer) {
         if (pricePerKilometer < PRICE_MIN_VALUE || pricePerKilometer > PRICE_MAX_VALUE) {
-            throw new IllegalArgumentException(String.format("The airplane price cannot be cheaper than %.2f or more expensive than %.2f", PRICE_MIN_VALUE, PRICE_MAX_VALUE));
+            throw new IllegalArgumentException(String.format("A vehicle with a price per kilometer lower than $%.2f or higher than $%.2f cannot exist!", PRICE_MIN_VALUE, PRICE_MAX_VALUE));
         }
     }
 

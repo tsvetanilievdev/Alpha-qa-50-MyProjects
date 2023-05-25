@@ -17,7 +17,7 @@ public class TicketImpl implements Ticket {
 
     private void setCosts(double costs) {
         if (costs < 0) {
-            throw new InvalidUserInputException("Costs cannot be negative number!");
+            throw new InvalidUserInputException(String.format("Value of 'costs' must be a positive number. Actual value: %.2f",costs));
         }
         this.costs = costs;
     }
@@ -29,7 +29,7 @@ public class TicketImpl implements Ticket {
 
     @Override
     public String getAsString() {
-        return String.format("Ticket ----%nDestination: %s%nPrice: %s",
+        return String.format("Ticket ----%nDestination: %s%nPrice: %.2f%n",
                 getJourney().getDestination(), calculatePrice());
     }
 
