@@ -13,6 +13,7 @@ public class AirplaneImpl extends VehicleBase implements Airplane, Vehicle {
 
     private final int id;
     private boolean hasFreeFood;
+
     public AirplaneImpl(int id, int passengerCapacity, double pricePerKilometer, boolean hasFreeFood) {
         super(VehicleType.AIR, passengerCapacity, pricePerKilometer);
         this.id = id;
@@ -22,6 +23,11 @@ public class AirplaneImpl extends VehicleBase implements Airplane, Vehicle {
     @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public boolean hasFreeFood() {
+        return hasFreeFood;
     }
 
     @Override
@@ -35,20 +41,17 @@ public class AirplaneImpl extends VehicleBase implements Airplane, Vehicle {
 
     @Override
     protected void validatePassengerCapacity(int passengerCapacity) {
-        if(passengerCapacity < PASSENGER_MIN_VALUE || passengerCapacity > PASSENGER_MAX_VALUE){
-            throw new IllegalArgumentException(String.format("The airplane cannot have less than %d passengers or more than %d passengers.", PRICE_MIN_VALUE, PRICE_MAX_VALUE));
+        if (passengerCapacity < PASSENGER_MIN_VALUE || passengerCapacity > PASSENGER_MAX_VALUE) {
+            throw new IllegalArgumentException(String.format("The airplane cannot have less than %d passengers or more than %d passengers.", PASSENGER_MIN_VALUE, PASSENGER_MAX_VALUE));
         }
     }
 
     @Override
     protected void validatePricePerKilometer(double pricePerKilometer) {
-        if(pricePerKilometer < PRICE_MIN_VALUE || pricePerKilometer > PRICE_MAX_VALUE){
-            throw new IllegalArgumentException(String.format("The airplane price cannot be cheaper than %.2f or more expensive than %.2f",PRICE_MIN_VALUE, PRICE_MAX_VALUE));
+        if (pricePerKilometer < PRICE_MIN_VALUE || pricePerKilometer > PRICE_MAX_VALUE) {
+            throw new IllegalArgumentException(String.format("The airplane price cannot be cheaper than %.2f or more expensive than %.2f", PRICE_MIN_VALUE, PRICE_MAX_VALUE));
         }
     }
 
-    @Override
-    public boolean hasFreeFood() {
-        return hasFreeFood;
-    }
+
 }
