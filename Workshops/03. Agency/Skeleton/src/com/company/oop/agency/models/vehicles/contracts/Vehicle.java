@@ -2,7 +2,7 @@ package com.company.oop.agency.models.vehicles.contracts;
 
 import com.company.oop.agency.models.contracts.Identifiable;
 import com.company.oop.agency.models.contracts.Printable;
-import com.company.oop.agency.models.vehicles.VehicleType;
+import com.company.oop.agency.models.vehicles.enums.VehicleType;
 
 public interface Vehicle extends Identifiable, Printable {
 
@@ -11,5 +11,6 @@ public interface Vehicle extends Identifiable, Printable {
     int getPassengerCapacity();
 
     double getPricePerKilometer();
+
 
 }

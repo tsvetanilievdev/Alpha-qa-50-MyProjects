@@ -1,7 +1,10 @@
 package com.company.oop.agency.models.vehicles;
 
-public class TrainImpl {
+import com.company.oop.agency.models.vehicles.contracts.Train;
+import com.company.oop.agency.models.vehicles.contracts.Vehicle;
+import com.company.oop.agency.models.vehicles.enums.VehicleType;
 
+public class TrainImpl extends VehicleBase implements Train, Vehicle {
     public static final int PASSENGER_MIN_VALUE = 30;
     public static final int PASSENGER_MAX_VALUE = 150;
     public static final int CARTS_MIN_VALUE = 1;
@@ -9,8 +12,50 @@ public class TrainImpl {
     public static final double PRICE_MIN_VALUE = 0.1;
     public static final double PRICE_MAX_VALUE = 2.5;
 
+    private int id;
+    private int carts;
+
     public TrainImpl(int id, int passengerCapacity, double pricePerKilometer, int carts) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        super(VehicleType.LAND,passengerCapacity, pricePerKilometer);
+        this.id = id;
+        setCarts(carts);
     }
 
+    private void setCarts(int carts){
+        if(carts < CARTS_MIN_VALUE || carts > CARTS_MAX_VALUE){
+            throw new IllegalArgumentException(String.format("The train's carts must be between %d and %d", CARTS_MIN_VALUE, CARTS_MAX_VALUE));
+        }
+        this.carts = carts;
+    }
+    @Override
+    public int getId() {
+        return id;
+    }
+    @Override
+    public int getCarts() {
+        return carts;
+    }
+
+    @Override
+    public String getAsString() {
+        return String.format("Train ----%nPassenger capacity: %s%nPrice per kilometer: %s%nVehicle type: %s%nCarts amount: %s",
+                super.getPassengerCapacity(),
+                super.getPricePerKilometer(),
+                super.getType(),
+                getCarts());
+    }
+
+    @Override
+    protected void validatePassengerCapacity(int passengerCapacity) {
+        if(passengerCapacity < PASSENGER_MIN_VALUE || passengerCapacity >PASSENGER_MAX_VALUE){
+            throw new IllegalArgumentException("A train cannot have less than 30 passengers or more than 150 passengers.");
+        }
+    }
+
+    @Override
+    protected void validatePricePerKilometer(double pricePerKilometer) {
+        if(pricePerKilometer < PRICE_MIN_VALUE || pricePerKilometer > PRICE_MAX_VALUE){
+            throw new IllegalArgumentException("A train cannot have less than 1 cart or more than 15 carts.");
+        }
+    }
 }
