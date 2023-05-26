@@ -4,20 +4,23 @@ import com.company.oop.agency.models.vehicles.contracts.Vehicle;
 import com.company.oop.agency.models.vehicles.enums.VehicleType;
 
 public abstract class VehicleBase implements Vehicle {
-    private final VehicleType type;
+    public static final double PRICE_MIN_VALUE = 0.1;
+    public static final double PRICE_MAX_VALUE = 2.5;
+
+    private final int id;
     private int passengerCapacity;
     private double pricePerKilometer;
 
-    protected VehicleBase(VehicleType type, int passengerCapacity, double pricePerKilometer) {
-        this.type = type;
+    protected VehicleBase(int id, int passengerCapacity, double pricePerKilometer) {
+        this.id = id;
         setPassengerCapacity(passengerCapacity);
         setPricePerKilometer(pricePerKilometer);
     }
-
-    public VehicleType getType() {
-        return type;
+    @Override
+    public int getId() {
+        return id;
     }
-
+    @Override
     public int getPassengerCapacity() {
         return passengerCapacity;
     }
@@ -26,7 +29,7 @@ public abstract class VehicleBase implements Vehicle {
         validatePassengerCapacity(passengerCapacity);
         this.passengerCapacity = passengerCapacity;
     }
-
+    @Override
     public double getPricePerKilometer() {
         return pricePerKilometer;
     }
@@ -36,8 +39,13 @@ public abstract class VehicleBase implements Vehicle {
         this.pricePerKilometer = pricePerKilometer;
     }
 
+    //TO DO...
     protected abstract void validatePassengerCapacity(int passengerCapacity);
 
-    protected abstract void validatePricePerKilometer(double pricePerKilometer);
+    protected void validatePricePerKilometer(double pricePerKilometer) {
+        if (pricePerKilometer < PRICE_MIN_VALUE || pricePerKilometer > PRICE_MAX_VALUE) {
+            throw new IllegalArgumentException(String.format("A vehicle with a price per kilometer lower than $%.2f or higher than $%.2f cannot exist!", PRICE_MIN_VALUE, PRICE_MAX_VALUE));
+        }
+    }
 
 }

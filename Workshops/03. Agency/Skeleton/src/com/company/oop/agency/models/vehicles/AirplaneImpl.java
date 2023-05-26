@@ -4,27 +4,23 @@ import com.company.oop.agency.models.vehicles.contracts.Airplane;
 import com.company.oop.agency.models.vehicles.contracts.Vehicle;
 import com.company.oop.agency.models.vehicles.enums.VehicleType;
 
-public class AirplaneImpl extends VehicleBase implements Airplane, Vehicle {
+public class AirplaneImpl extends VehicleBase implements Airplane {
 
     public static final int PASSENGER_MIN_VALUE = 1;
     public static final int PASSENGER_MAX_VALUE = 800;
     public static final double PRICE_MIN_VALUE = 0.1;
     public static final double PRICE_MAX_VALUE = 2.5;
 
-    private final int id;
     private boolean hasFreeFood;
 
     public AirplaneImpl(int id, int passengerCapacity, double pricePerKilometer, boolean hasFreeFood) {
-        super(VehicleType.AIR, passengerCapacity, pricePerKilometer);
-        this.id = id;
+        super(id, passengerCapacity, pricePerKilometer);
         this.hasFreeFood = hasFreeFood;
     }
-
     @Override
-    public int getId() {
-        return id;
+    public VehicleType getType(){
+        return VehicleType.AIR;
     }
-
     @Override
     public boolean hasFreeFood() {
         return hasFreeFood;
@@ -35,7 +31,7 @@ public class AirplaneImpl extends VehicleBase implements Airplane, Vehicle {
         return String.format("Airplane ----%nPassenger capacity: %s%nPrice per kilometer: %.2f%nVehicle type: %s%nHas free food: %s%n",
                 super.getPassengerCapacity(),
                 super.getPricePerKilometer(),
-                super.getType(),
+                getType(),
                 hasFreeFood());
     }
 
@@ -45,13 +41,5 @@ public class AirplaneImpl extends VehicleBase implements Airplane, Vehicle {
             throw new IllegalArgumentException(String.format("An airplane cannot have less than %d passengers or more than %d passengers.", PASSENGER_MIN_VALUE, PASSENGER_MAX_VALUE));
         }
     }
-
-    @Override
-    protected void validatePricePerKilometer(double pricePerKilometer) {
-        if (pricePerKilometer < PRICE_MIN_VALUE || pricePerKilometer > PRICE_MAX_VALUE) {
-            throw new IllegalArgumentException(String.format("A vehicle with a price per kilometer lower than $%.2f or higher than $%.2f cannot exist!", PRICE_MIN_VALUE, PRICE_MAX_VALUE));
-        }
-    }
-
 
 }

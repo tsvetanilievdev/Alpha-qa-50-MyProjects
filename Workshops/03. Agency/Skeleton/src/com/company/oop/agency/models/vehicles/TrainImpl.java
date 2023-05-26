@@ -4,7 +4,7 @@ import com.company.oop.agency.models.vehicles.contracts.Train;
 import com.company.oop.agency.models.vehicles.contracts.Vehicle;
 import com.company.oop.agency.models.vehicles.enums.VehicleType;
 
-public class TrainImpl extends VehicleBase implements Train, Vehicle {
+public class TrainImpl extends VehicleBase implements Train {
     public static final int PASSENGER_MIN_VALUE = 30;
     public static final int PASSENGER_MAX_VALUE = 150;
     public static final int CARTS_MIN_VALUE = 1;
@@ -12,20 +12,16 @@ public class TrainImpl extends VehicleBase implements Train, Vehicle {
     public static final double PRICE_MIN_VALUE = 0.1;
     public static final double PRICE_MAX_VALUE = 2.5;
 
-    private final int id;
     private int carts;
 
     public TrainImpl(int id, int passengerCapacity, double pricePerKilometer, int carts) {
-        super(VehicleType.LAND, passengerCapacity, pricePerKilometer);
-        this.id = id;
+        super(id, passengerCapacity, pricePerKilometer);
         setCarts(carts);
     }
-
     @Override
-    public int getId() {
-        return id;
+    public VehicleType getType(){
+        return VehicleType.LAND;
     }
-
     @Override
     public int getCarts() {
         return carts;
@@ -43,7 +39,7 @@ public class TrainImpl extends VehicleBase implements Train, Vehicle {
         return String.format("Train ----%nPassenger capacity: %s%nPrice per kilometer: %.2f%nVehicle type: %s%nCarts amount: %s%n",
                 super.getPassengerCapacity(),
                 super.getPricePerKilometer(),
-                super.getType(),
+                getType(),
                 getCarts());
     }
 
@@ -55,12 +51,4 @@ public class TrainImpl extends VehicleBase implements Train, Vehicle {
         }
     }
 
-    @Override
-    protected void validatePricePerKilometer(double pricePerKilometer) {
-        if (pricePerKilometer < PRICE_MIN_VALUE || pricePerKilometer > PRICE_MAX_VALUE) {
-            throw new IllegalArgumentException(String.format("A vehicle with a price per kilometer lower than $%.2f or higher than $%.2f cannot exist!",
-                    PRICE_MIN_VALUE,
-                    PRICE_MAX_VALUE));
-        }
-    }
 }
