@@ -8,8 +8,6 @@ public class BusImpl extends VehicleBase implements Bus {
 
     public static final int PASSENGER_MIN_VALUE = 10;
     public static final int PASSENGER_MAX_VALUE = 50;
-    public static final double PRICE_MIN_VALUE = 0.1;
-    public static final double PRICE_MAX_VALUE = 2.5;
 
     public BusImpl(int id, int passengerCapacity, double pricePerKilometer) {
         super(id, passengerCapacity, pricePerKilometer);
@@ -21,17 +19,13 @@ public class BusImpl extends VehicleBase implements Bus {
 
     @Override
     public String getAsString() {
-        return String.format("Bus ----%nPassenger capacity: %s%nPrice per kilometer: %.2f%nVehicle type: %s%n",
-                super.getPassengerCapacity(),
-                super.getPricePerKilometer(),
-                getType());
+        return String.format("Bus ----%n%s", super.getAsString());
     }
 
     @Override
     protected void validatePassengerCapacity(int passengerCapacity) {
         if (passengerCapacity < PASSENGER_MIN_VALUE || passengerCapacity > PASSENGER_MAX_VALUE) {
             throw new IllegalArgumentException(String.format("A bus cannot have less than %d passengers or more than %d passengers.", PASSENGER_MIN_VALUE, PASSENGER_MAX_VALUE));
-
         }
     }
 

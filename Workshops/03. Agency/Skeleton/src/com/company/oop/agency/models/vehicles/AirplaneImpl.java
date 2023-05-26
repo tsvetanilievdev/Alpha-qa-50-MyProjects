@@ -6,11 +6,6 @@ import com.company.oop.agency.models.vehicles.enums.VehicleType;
 
 public class AirplaneImpl extends VehicleBase implements Airplane {
 
-    public static final int PASSENGER_MIN_VALUE = 1;
-    public static final int PASSENGER_MAX_VALUE = 800;
-    public static final double PRICE_MIN_VALUE = 0.1;
-    public static final double PRICE_MAX_VALUE = 2.5;
-
     private boolean hasFreeFood;
 
     public AirplaneImpl(int id, int passengerCapacity, double pricePerKilometer, boolean hasFreeFood) {
@@ -28,18 +23,9 @@ public class AirplaneImpl extends VehicleBase implements Airplane {
 
     @Override
     public String getAsString() {
-        return String.format("Airplane ----%nPassenger capacity: %s%nPrice per kilometer: %.2f%nVehicle type: %s%nHas free food: %s%n",
-                super.getPassengerCapacity(),
-                super.getPricePerKilometer(),
-                getType(),
+        return String.format("Airplane ----%n%sHas free food: %s%n",
+                super.getAsString(),
                 hasFreeFood());
-    }
-
-    @Override
-    protected void validatePassengerCapacity(int passengerCapacity) {
-        if (passengerCapacity < PASSENGER_MIN_VALUE || passengerCapacity > PASSENGER_MAX_VALUE) {
-            throw new IllegalArgumentException(String.format("An airplane cannot have less than %d passengers or more than %d passengers.", PASSENGER_MIN_VALUE, PASSENGER_MAX_VALUE));
-        }
     }
 
 }
