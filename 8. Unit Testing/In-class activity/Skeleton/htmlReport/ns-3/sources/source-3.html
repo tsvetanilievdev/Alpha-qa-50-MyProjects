@@ -1,0 +1,199 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ProductRepositoryImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.company.oop.cosmetics.core</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductRepositoryImpl (com.company.oop.cosmetics.core)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ProductRepositoryImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93,5%
+  </span>
+  <span class="absValue">
+    (29/31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.company.oop.cosmetics.core;
+&nbsp;
+&nbsp;import com.company.oop.cosmetics.core.contracts.ProductRepository;
+&nbsp;import com.company.oop.cosmetics.exceptions.InvalidUserInputException;
+&nbsp;import com.company.oop.cosmetics.models.CategoryImpl;
+&nbsp;import com.company.oop.cosmetics.models.GenderType;
+&nbsp;import com.company.oop.cosmetics.models.ProductImpl;
+&nbsp;import com.company.oop.cosmetics.models.contracts.Category;
+&nbsp;import com.company.oop.cosmetics.models.contracts.Product;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class ProductRepositoryImpl implements ProductRepository {
+&nbsp;
+&nbsp;    private static final String PRODUCT_DOES_NOT_EXIST = &quot;Product %s does not exist!&quot;;
+&nbsp;    private static final String CATEGORY_DOES_NOT_EXIST = &quot;Category %s does not exist!&quot;;
+&nbsp;
+&nbsp;    private final List&lt;Product&gt; products;
+&nbsp;    private final List&lt;Category&gt; categories;
+&nbsp;
+<b class="fc">&nbsp;    public ProductRepositoryImpl() {</b>
+<b class="fc">&nbsp;        this.products = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.categories = new ArrayList&lt;&gt;();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Category&gt; getCategories() {
+<b class="fc">&nbsp;        return new ArrayList&lt;&gt;(categories);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Product&gt; getProducts() {
+<b class="fc">&nbsp;        return new ArrayList&lt;&gt;(products);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Product findProductByName(String productName) {
+<b class="fc">&nbsp;        for (Product product : getProducts()) {</b>
+<b class="fc">&nbsp;            if (product.getName().equalsIgnoreCase(productName)) {</b>
+<b class="fc">&nbsp;                return product;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="fc">&nbsp;        throw new InvalidUserInputException(String.format(PRODUCT_DOES_NOT_EXIST, productName));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Category findCategoryByName(String categoryName) {
+<b class="fc">&nbsp;        for (Category category : getCategories()) {</b>
+<b class="fc">&nbsp;            if (category.getName().equalsIgnoreCase(categoryName)) {</b>
+<b class="fc">&nbsp;                return category;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;        throw new InvalidUserInputException(String.format(CATEGORY_DOES_NOT_EXIST, categoryName));
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void createCategory(String categoryName) {
+&nbsp;        this.categories.add(new CategoryImpl(categoryName));
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void createProduct(String name, String brand, double price, GenderType gender) {
+&nbsp;        this.products.add(new ProductImpl(name, brand, price, gender));
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean categoryExist(String categoryName) {
+&nbsp;        boolean exists = false;
+<b class="fc">&nbsp;</b>
+&nbsp;        for (Category category : getCategories()) {
+<b class="fc">&nbsp;            if (category.getName().equalsIgnoreCase(categoryName)) {</b>
+<b class="fc">&nbsp;                exists = true;</b>
+<b class="fc">&nbsp;                break;</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;        }
+<b class="fc">&nbsp;</b>
+&nbsp;        return exists;
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean productExist(String productName) {
+&nbsp;        boolean exists = false;
+<b class="fc">&nbsp;</b>
+&nbsp;        for (Product product : getProducts()) {
+<b class="fc">&nbsp;            if (product.getName().equalsIgnoreCase(productName)) {</b>
+<b class="fc">&nbsp;                exists = true;</b>
+<b class="fc">&nbsp;                break;</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;        }
+<b class="fc">&nbsp;</b>
+&nbsp;        return exists;
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-14 14:38</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ProductImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.company.oop.cosmetics.models</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductImpl (com.company.oop.cosmetics.models)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ProductImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (26/26)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.company.oop.cosmetics.models;
+&nbsp;
+&nbsp;import com.company.oop.cosmetics.exceptions.InvalidUserInputException;
+&nbsp;import com.company.oop.cosmetics.models.contracts.Product;
+&nbsp;
+&nbsp;public class ProductImpl implements Product {
+&nbsp;
+&nbsp;    public static final int NAME_MIN_LENGTH = 3;
+&nbsp;    public static final int NAME_MAX_LENGTH = 10;
+<b class="fc">&nbsp;    private static final String INVALID_NAME_MESSAGE = String.format(</b>
+&nbsp;            &quot;Product name should be between %d and %d symbols.&quot;,
+<b class="fc">&nbsp;            NAME_MIN_LENGTH,</b>
+<b class="fc">&nbsp;            NAME_MAX_LENGTH);</b>
+&nbsp;
+&nbsp;    public static final int BRAND_MIN_LENGTH = 2;
+&nbsp;    public static final int BRAND_MAX_LENGTH = 10;
+<b class="fc">&nbsp;    private static final String INVALID_BRAND_MESSAGE = String.format(</b>
+&nbsp;            &quot;Product brand should be between %d and %d symbols.&quot;,
+<b class="fc">&nbsp;            BRAND_MIN_LENGTH,</b>
+<b class="fc">&nbsp;            BRAND_MAX_LENGTH);</b>
+&nbsp;
+&nbsp;    private static final String INVALID_PRICE_MESSAGE = &quot;Price can&#39;t be negative.&quot;;
+&nbsp;
+&nbsp;    private String name;
+&nbsp;    private String brand;
+&nbsp;    private double price;
+&nbsp;    private final GenderType gender;
+&nbsp;
+<b class="fc">&nbsp;    public ProductImpl(String name, String brand, double price, GenderType gender) {</b>
+<b class="fc">&nbsp;        setName(name);</b>
+<b class="fc">&nbsp;        setBrand(brand);</b>
+<b class="fc">&nbsp;        setPrice(price);</b>
+<b class="fc">&nbsp;        this.gender = gender;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getName() {
+<b class="fc">&nbsp;        return name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void setName(String name) {
+<b class="fc">&nbsp;        if (name.length() &lt; NAME_MIN_LENGTH || name.length() &gt; NAME_MAX_LENGTH) {</b>
+<b class="fc">&nbsp;            throw new InvalidUserInputException(INVALID_NAME_MESSAGE);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        this.name = name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getBrand() {
+<b class="fc">&nbsp;        return brand;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void setBrand(String brand) {
+<b class="fc">&nbsp;        if (brand.length() &lt; BRAND_MIN_LENGTH || brand.length() &gt; BRAND_MAX_LENGTH) {</b>
+<b class="fc">&nbsp;            throw new InvalidUserInputException(INVALID_BRAND_MESSAGE);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        this.brand = brand;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public double getPrice() {
+<b class="fc">&nbsp;        return price;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void setPrice(double price) {
+<b class="fc">&nbsp;        if (price &lt; 0) {</b>
+<b class="fc">&nbsp;            throw new InvalidUserInputException(INVALID_PRICE_MESSAGE);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        this.price = price;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public GenderType getGender() {
+<b class="fc">&nbsp;        return gender;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String print() {
+<b class="fc">&nbsp;        return String.format(</b>
+&nbsp;                &quot;#%s %s%n&quot; +
+&nbsp;                &quot; #Price: $%.2f%n&quot; +
+&nbsp;                &quot; #Gender: %s%n&quot;,
+&nbsp;                name,
+&nbsp;                brand,
+<b class="fc">&nbsp;                price,</b>
+&nbsp;                gender);
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-14 14:38</div>
+</div>
+</body>
+</html>

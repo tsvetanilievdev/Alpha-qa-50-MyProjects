@@ -1,0 +1,172 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CreateProductCommand</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.company.oop.cosmetics.commands</a>
+</div>
+
+<h1>Coverage Summary for Class: CreateProductCommand (com.company.oop.cosmetics.commands)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CreateProductCommand</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.company.oop.cosmetics.commands;
+&nbsp;
+&nbsp;import com.company.oop.cosmetics.commands.contracts.Command;
+&nbsp;import com.company.oop.cosmetics.exceptions.DuplicateEntityException;
+&nbsp;import com.company.oop.cosmetics.exceptions.InvalidUserInputException;
+&nbsp;import com.company.oop.cosmetics.core.contracts.ProductRepository;
+&nbsp;import com.company.oop.cosmetics.models.GenderType;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class CreateProductCommand implements Command {
+&nbsp;
+&nbsp;    public static final int EXPECTED_PARAMETERS_COUNT = 4;
+<b class="fc">&nbsp;    private static final String INVALID_PARAMETERS_COUNT_MESSAGE = String.format(</b>
+&nbsp;            &quot;CreateProduct command expects %d parameters.&quot;,
+<b class="fc">&nbsp;            EXPECTED_PARAMETERS_COUNT);</b>
+&nbsp;
+&nbsp;    private static final String PRODUCT_EXIST_MESSAGE = &quot;Product %s already exist.&quot;;
+&nbsp;    private static final String INVALID_PRICE_MESSAGE = &quot;Third parameter should be price (real number).&quot;;
+&nbsp;    private static final String INVALID_GENDER_MESSAGE = &quot;Forth parameter should be one of Men, Women or Unisex.&quot;;
+&nbsp;    private static final String PRODUCT_CREATED = &quot;Product with name %s was created!&quot;;
+&nbsp;
+&nbsp;    private final ProductRepository productRepository;
+&nbsp;
+<b class="fc">&nbsp;    public CreateProductCommand(ProductRepository productRepository) {</b>
+<b class="fc">&nbsp;        this.productRepository = productRepository;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String execute(List&lt;String&gt; parameters) {
+<b class="fc">&nbsp;        if (parameters.size() &lt; EXPECTED_PARAMETERS_COUNT) {</b>
+<b class="fc">&nbsp;            throw new InvalidUserInputException(INVALID_PARAMETERS_COUNT_MESSAGE);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        String name = parameters.get(0);</b>
+<b class="fc">&nbsp;        String brand = parameters.get(1);</b>
+<b class="fc">&nbsp;        double price = tryParseDouble(parameters.get(2));</b>
+<b class="fc">&nbsp;        GenderType gender = tryParseGenderType(parameters.get(3));</b>
+&nbsp;
+<b class="fc">&nbsp;        return createProduct(name, brand, price, gender);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private String createProduct(String name, String brand, double price, GenderType gender) {
+<b class="fc">&nbsp;        if (productRepository.productExist(name)) {</b>
+<b class="fc">&nbsp;            throw new DuplicateEntityException(String.format(PRODUCT_EXIST_MESSAGE, name));</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        productRepository.createProduct(name, brand, price, gender);</b>
+&nbsp;
+<b class="fc">&nbsp;        return String.format(PRODUCT_CREATED, name);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private double tryParseDouble(String value) {
+&nbsp;        try {
+<b class="fc">&nbsp;            return Double.parseDouble(value);</b>
+<b class="fc">&nbsp;        } catch (NumberFormatException e) {</b>
+<b class="fc">&nbsp;            throw new InvalidUserInputException(INVALID_PRICE_MESSAGE);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private GenderType tryParseGenderType(String value) {
+&nbsp;        try {
+<b class="fc">&nbsp;            return GenderType.valueOf(value.toUpperCase());</b>
+<b class="fc">&nbsp;        } catch (IllegalArgumentException e) {</b>
+<b class="fc">&nbsp;            throw new InvalidUserInputException(INVALID_GENDER_MESSAGE);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-14 14:38</div>
+</div>
+</body>
+</html>

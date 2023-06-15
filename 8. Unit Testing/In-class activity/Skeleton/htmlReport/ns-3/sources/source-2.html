@@ -1,0 +1,187 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > EngineImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.company.oop.cosmetics.core</a>
+</div>
+
+<h1>Coverage Summary for Class: EngineImpl (com.company.oop.cosmetics.core)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EngineImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/27)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.company.oop.cosmetics.core;
+&nbsp;
+&nbsp;import com.company.oop.cosmetics.commands.contracts.Command;
+&nbsp;import com.company.oop.cosmetics.core.contracts.CommandFactory;
+&nbsp;import com.company.oop.cosmetics.core.contracts.Engine;
+&nbsp;import com.company.oop.cosmetics.core.contracts.ProductRepository;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Scanner;
+&nbsp;
+&nbsp;public final class EngineImpl implements Engine {
+&nbsp;
+&nbsp;    private static final String TERMINATION_COMMAND = &quot;Exit&quot;;
+&nbsp;    private static final String EMPTY_COMMAND_ERROR = &quot;Command cannot be empty.&quot;;
+&nbsp;
+&nbsp;    private final CommandFactory commandFactory;
+&nbsp;    private final ProductRepository productRepository;
+&nbsp;
+<b class="nc">&nbsp;    public EngineImpl() {</b>
+<b class="nc">&nbsp;        this.commandFactory = new CommandFactoryImpl();</b>
+<b class="nc">&nbsp;        this.productRepository = new ProductRepositoryImpl();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void start() {
+<b class="nc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+&nbsp;        while (true) {
+&nbsp;            try {
+<b class="nc">&nbsp;                String inputLine = scanner.nextLine();</b>
+<b class="nc">&nbsp;                if (inputLine.isBlank()) {</b>
+<b class="nc">&nbsp;                    System.out.println(EMPTY_COMMAND_ERROR);</b>
+<b class="nc">&nbsp;                    continue;</b>
+&nbsp;                }
+<b class="nc">&nbsp;                if (inputLine.equalsIgnoreCase(TERMINATION_COMMAND)) {</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                }
+<b class="nc">&nbsp;                processCommand(inputLine);</b>
+<b class="nc">&nbsp;            } catch (Exception ex) {</b>
+<b class="nc">&nbsp;                if (ex.getMessage() != null &amp;&amp; !ex.getMessage().isEmpty()) {</b>
+<b class="nc">&nbsp;                    System.out.println(ex.getMessage());</b>
+&nbsp;                } else {
+<b class="nc">&nbsp;                    System.out.println(ex);</b>
+&nbsp;                }
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private void processCommand(String inputLine) {
+<b class="nc">&nbsp;        String commandName = extractCommandName(inputLine);</b>
+<b class="nc">&nbsp;        Command command = commandFactory.createCommandFromCommandName(commandName, productRepository);</b>
+<b class="nc">&nbsp;        List&lt;String&gt; parameters = extractCommandParameters(inputLine);</b>
+<b class="nc">&nbsp;        String executionResult = command.execute(parameters);</b>
+<b class="nc">&nbsp;        System.out.println(executionResult);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Receives a full line and extracts the command to be executed from it.
+&nbsp;     * For example, if the input line is &quot;FilterBy Assignee John&quot;, the method will return &quot;FilterBy&quot;.
+&nbsp;     *
+&nbsp;     * @param inputLine A complete input line
+&nbsp;     * @return The name of the command to be executed
+&nbsp;     */
+&nbsp;    private String extractCommandName(String inputLine) {
+<b class="nc">&nbsp;        return inputLine.split(&quot; &quot;)[0];</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Receives a full line and extracts the parameters that are needed for the command to execute.
+&nbsp;     * For example, if the input line is &quot;FilterBy Assignee John&quot;,
+&nbsp;     * the method will return a list of [&quot;Assignee&quot;, &quot;John&quot;].
+&nbsp;     *
+&nbsp;     * @param inputLine A complete input line
+&nbsp;     * @return A list of the parameters needed to execute the command
+&nbsp;     */
+&nbsp;    private List&lt;String&gt; extractCommandParameters(String inputLine) {
+<b class="nc">&nbsp;        String[] commandParts = inputLine.split(&quot; &quot;);</b>
+<b class="nc">&nbsp;        List&lt;String&gt; parameters = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        for (int i = 1; i &lt; commandParts.length; i++) {</b>
+<b class="nc">&nbsp;            parameters.add(commandParts[i]);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return parameters;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-14 14:38</div>
+</div>
+</body>
+</html>

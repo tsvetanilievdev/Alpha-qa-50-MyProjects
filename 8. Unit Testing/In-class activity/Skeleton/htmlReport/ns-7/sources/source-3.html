@@ -1,0 +1,94 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ProductRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.company.oop.cosmetics.core.contracts</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductRepository (com.company.oop.cosmetics.core.contracts)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ProductRepository</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.company.oop.cosmetics.core.contracts;
+&nbsp;
+&nbsp;import com.company.oop.cosmetics.models.GenderType;
+&nbsp;import com.company.oop.cosmetics.models.contracts.Category;
+&nbsp;import com.company.oop.cosmetics.models.contracts.Product;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public interface ProductRepository {
+&nbsp;
+&nbsp;    List&lt;Category&gt; getCategories();
+&nbsp;
+&nbsp;    List&lt;Product&gt; getProducts();
+&nbsp;
+&nbsp;    Product findProductByName(String productName);
+&nbsp;
+&nbsp;    Category findCategoryByName(String categoryName);
+&nbsp;
+&nbsp;    void createCategory(String categoryToAdd);
+&nbsp;
+&nbsp;    void createProduct(String name, String brand, double price, GenderType gender);
+&nbsp;
+&nbsp;    boolean categoryExist(String categoryName);
+&nbsp;
+&nbsp;    boolean productExist(String productName);
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-14 14:38</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CommandFactoryImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.company.oop.cosmetics.core</a>
+</div>
+
+<h1>Coverage Summary for Class: CommandFactoryImpl (com.company.oop.cosmetics.core)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CommandFactoryImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/11)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CommandFactoryImpl$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.company.oop.cosmetics.core;
+&nbsp;
+&nbsp;import com.company.oop.cosmetics.commands.*;
+&nbsp;import com.company.oop.cosmetics.commands.contracts.Command;
+&nbsp;import com.company.oop.cosmetics.core.contracts.CommandFactory;
+&nbsp;import com.company.oop.cosmetics.exceptions.InvalidUserInputException;
+&nbsp;import com.company.oop.cosmetics.core.contracts.ProductRepository;
+&nbsp;
+<b class="nc">&nbsp;public class CommandFactoryImpl implements CommandFactory {</b>
+&nbsp;
+&nbsp;    private static final String COMMAND_NOT_SUPPORTED_MESSAGE = &quot;Command %s is not supported.&quot;;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Command createCommandFromCommandName(String commandTypeValue, ProductRepository productRepository) {
+<b class="nc">&nbsp;        CommandType commandType = tryParseCommandType(commandTypeValue);</b>
+&nbsp;
+<b class="nc">&nbsp;        switch (commandType) {</b>
+&nbsp;            case CREATECATEGORY:
+<b class="nc">&nbsp;                return new CreateCategoryCommand(productRepository);</b>
+&nbsp;            case CREATEPRODUCT:
+<b class="nc">&nbsp;                return new CreateProductCommand(productRepository);</b>
+&nbsp;            case ADDPRODUCTTOCATEGORY:
+<b class="nc">&nbsp;                return new AddProductToCategoryCommand(productRepository);</b>
+&nbsp;            case SHOWCATEGORY:
+<b class="nc">&nbsp;                return new ShowCategoryCommand(productRepository);</b>
+&nbsp;            default:
+&nbsp;                // This exception means that the CommandType enum and command classes are inconsistent.
+&nbsp;                // This exception is not handled because it indicates that code should be fixed.
+<b class="nc">&nbsp;                throw new UnsupportedOperationException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, commandTypeValue));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private CommandType tryParseCommandType(String value) {
+&nbsp;        try {
+<b class="nc">&nbsp;            return CommandType.valueOf(value.toUpperCase());</b>
+<b class="nc">&nbsp;        } catch (IllegalArgumentException e) {</b>
+&nbsp;            // This exception means that the user has entered not existing command.
+<b class="nc">&nbsp;            throw new InvalidUserInputException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, value));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-14 14:38</div>
+</div>
+</body>
+</html>
