@@ -22,7 +22,7 @@ public class MotorcycleImpl extends VehicleBase implements Motorcycle {
         super(make, model, price);
         setCategory(category);
     }
-
+    VehicleBase.
     @Override
     public int getWheels() {
         return wheels;
