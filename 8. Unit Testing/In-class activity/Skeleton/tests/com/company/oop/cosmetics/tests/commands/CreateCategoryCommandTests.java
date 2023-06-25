@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class CreateCategoryCommandTests {
-    // @BeforeEach may help here
     private ProductRepositoryImpl productRepository;
     private CreateCategoryCommand createCategoryCommand;
     private ArrayList<String> categoryList;
