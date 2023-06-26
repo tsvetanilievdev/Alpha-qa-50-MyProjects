@@ -2,6 +2,7 @@ package com.company.oop.cosmetics.utils;
 
 import com.company.oop.cosmetics.commands.CommandType;
 import com.company.oop.cosmetics.core.contracts.ProductRepository;
+import com.company.oop.cosmetics.exceptions.InvalidGenderTypeInputException;
 import com.company.oop.cosmetics.exceptions.InvalidInputException;
 import com.company.oop.cosmetics.models.GenderType;
 
@@ -37,7 +38,7 @@ public class ValidationHelpers {
             if (repository.findCategoryByName(name) != null) {
                 return false;
             }
-        } catch (InvalidInputException e){
+        } catch (InvalidInputException e) {
             return true;
         }
         return true;
@@ -54,15 +55,15 @@ public class ValidationHelpers {
     public static GenderType validateGenderType(String genderType) {
         try {
             return GenderType.valueOf(genderType.toUpperCase());
-        }catch (IllegalArgumentException e){
-            throw new InvalidInputException("Forth parameter should be one of Men, Women or Unisex.");
+        } catch (IllegalArgumentException e) {
+            throw new InvalidGenderTypeInputException("Forth parameter should be one of Men, Women or Unisex.");
         }
     }
 
     public static CommandType validateCommandType(String commandType) {
         try {
             return CommandType.valueOf(commandType.toUpperCase());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new InvalidInputException(String.format("Command %s is not supported.", commandType));
         }
     }

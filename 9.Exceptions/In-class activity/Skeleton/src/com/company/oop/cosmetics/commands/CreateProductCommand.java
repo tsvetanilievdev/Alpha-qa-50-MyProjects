@@ -2,6 +2,7 @@ package com.company.oop.cosmetics.commands;
 
 import com.company.oop.cosmetics.commands.contracts.Command;
 import com.company.oop.cosmetics.core.contracts.ProductRepository;
+import com.company.oop.cosmetics.exceptions.InvalidGenderTypeInputException;
 import com.company.oop.cosmetics.exceptions.InvalidInputException;
 import com.company.oop.cosmetics.models.GenderType;
 import com.company.oop.cosmetics.utils.ValidationHelpers;
@@ -23,32 +24,24 @@ public class CreateProductCommand implements Command {
 
         try {
             ValidationHelpers.validateListCount(parameters.size(), COUNT_OF_LIST_PARAMETERS);
-        }catch (InvalidInputException e){
-            return String.format("CreateProduct %s",e.getMessage());
+        } catch (InvalidInputException e) {
+            return String.format("CreateProduct %s", e.getMessage());
         }
 
         try {
             String name = parameters.get(0);
-
             String brand = parameters.get(1);
-            //TODO...
-            ValidationHelpers.validateIntegerRange("Product brand", brand,2, 10);
-
             double price = ValidationHelpers.validateValueIsDouble(parameters.get(2));
-            ValidationHelpers.validatePositiveNumber("Price", price);
-
             GenderType gender = ValidationHelpers.validateGenderType(parameters.get(3));
 
             return createProduct(name, brand, price, gender);
+        } catch (InvalidGenderTypeInputException e) {
+            return e.getMessage();
         } catch (InvalidInputException e) {
             return e.getMessage();
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return "Third parameter should be price (real number).";
-        }catch (RuntimeException e){
-            //TODO create customError for Enums
-            return "Forth parameter should be one of Men, Women or Unisex.";
         }
-
     }
 
     private String createProduct(String name, String brand, double price, GenderType gender) {
