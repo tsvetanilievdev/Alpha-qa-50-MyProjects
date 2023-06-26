@@ -23,7 +23,7 @@ public class ShowCategoryCommand implements Command {
             ValidationHelpers.validateListCount(parameters.size(), COUNT_OF_LIST_PARAMETERS);
             String categoryName = parameters.get(0);
             return showCategory(categoryName);
-        }catch (InvalidInputException e){
+        } catch (InvalidInputException e) {
             return e.getMessage();
         }
     }

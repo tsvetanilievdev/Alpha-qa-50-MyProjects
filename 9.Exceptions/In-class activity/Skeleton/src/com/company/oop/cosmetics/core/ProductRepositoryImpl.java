@@ -36,9 +36,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product findProductByName(String productName) {
-        for (Product product: getProducts()
-             ) {
-            if(product.getName().equalsIgnoreCase(productName)){
+        for (Product product : getProducts()
+        ) {
+            if (product.getName().equalsIgnoreCase(productName)) {
                 return product;
             }
         }

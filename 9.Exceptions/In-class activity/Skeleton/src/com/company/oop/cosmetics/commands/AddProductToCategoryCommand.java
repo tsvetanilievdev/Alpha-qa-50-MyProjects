@@ -23,12 +23,12 @@ public class AddProductToCategoryCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         try {
-            ValidationHelpers.validateListCount(parameters.size(),COUNT_OF_LIST_PARAMETERS);
+            ValidationHelpers.validateListCount(parameters.size(), COUNT_OF_LIST_PARAMETERS);
             String categoryNameToAdd = parameters.get(0);
             String productNameToAdd = parameters.get(1);
 
             return addProductToCategory(categoryNameToAdd, productNameToAdd);
-        }catch (InvalidInputException e){
+        } catch (InvalidInputException e) {
             return e.getMessage();
         }
 

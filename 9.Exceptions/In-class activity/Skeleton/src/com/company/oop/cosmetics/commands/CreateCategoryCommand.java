@@ -22,14 +22,14 @@ public class CreateCategoryCommand implements Command {
         try {
             ValidationHelpers.validateListCount(parameters.size(), COUNT_OF_LIST_PARAMETERS);
         } catch (InvalidInputException e) {
-            return String.format("Product %s",e.getMessage());
+            return String.format("Product %s", e.getMessage());
         }
         String categoryName = parameters.get(0);
         return createCategory(categoryName);
     }
 
     private String createCategory(String categoryName) {
-        if(!ValidationHelpers.validateCategoryNameIsUnique(productRepository, categoryName)){
+        if (!ValidationHelpers.validateCategoryNameIsUnique(productRepository, categoryName)) {
             throw new InvalidInputException(String.format("Category %s already exist.", categoryName));
         }
 

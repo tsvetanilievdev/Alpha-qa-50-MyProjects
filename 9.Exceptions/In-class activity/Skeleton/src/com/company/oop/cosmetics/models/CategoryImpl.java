@@ -23,7 +23,7 @@ public class CategoryImpl implements Category {
     }
 
     private void setName(String name) {
-        ValidationHelpers.validateIntegerRange("Category name",name, MIN_LENGTH_CATEGORY_NAME,MAX_LENGTH_CATEGORY_NAME);
+        ValidationHelpers.validateIntegerRange("Category name", name, MIN_LENGTH_CATEGORY_NAME, MAX_LENGTH_CATEGORY_NAME);
         this.name = name;
     }
 
@@ -43,7 +43,7 @@ public class CategoryImpl implements Category {
         if (products.size() == 0) {
             return String.format(
                     "#Category: %s%n" +
-                    " #No product in this category",
+                            " #No product in this category",
                     name);
         }
 
