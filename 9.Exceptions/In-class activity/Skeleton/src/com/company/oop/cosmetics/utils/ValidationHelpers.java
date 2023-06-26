@@ -21,20 +21,26 @@ public class ValidationHelpers {
 
     public static void validateListCount(int size, int mustCount) {
         if (size != mustCount) {
-            throw new InvalidInputException("The size of the list of parameters must be exactly %d");
+            throw new InvalidInputException(String.format("command expects %d parameters.", mustCount));
         }
     }
 
     public static void validateProductNameIsUnique(ProductRepository repository, String name) {
-        if (repository.findProductByName(name) != null) {
+
+        if (repository.productExist(name)) {
             throw new InvalidInputException(String.format("Product %s already exist.", name));
         }
     }
 
-    public static void validateCategoryNameIsUnique(ProductRepository repository, String name) {
-        if (repository.findCategoryByName(name) != null) {
-            throw new InvalidInputException(String.format("Category %s already exist", name));
+    public static boolean validateCategoryNameIsUnique(ProductRepository repository, String name) {
+        try {
+            if (repository.findCategoryByName(name) != null) {
+                return false;
+            }
+        } catch (InvalidInputException e){
+            return true;
         }
+        return true;
     }
 
     public static double validateValueIsDouble(String value) {

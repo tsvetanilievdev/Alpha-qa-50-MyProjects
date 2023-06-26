@@ -23,16 +23,30 @@ public class CreateProductCommand implements Command {
 
         try {
             ValidationHelpers.validateListCount(parameters.size(), COUNT_OF_LIST_PARAMETERS);
+        }catch (InvalidInputException e){
+            return String.format("CreateProduct %s",e.getMessage());
+        }
+
+        try {
             String name = parameters.get(0);
+
             String brand = parameters.get(1);
+            //TODO...
+            ValidationHelpers.validateIntegerRange("Product brand", brand,2, 10);
 
             double price = ValidationHelpers.validateValueIsDouble(parameters.get(2));
+            ValidationHelpers.validatePositiveNumber("Price", price);
 
             GenderType gender = ValidationHelpers.validateGenderType(parameters.get(3));
 
             return createProduct(name, brand, price, gender);
-        } catch (InvalidInputException | NumberFormatException e) {
+        } catch (InvalidInputException e) {
             return e.getMessage();
+        } catch (NumberFormatException e){
+            return "Third parameter should be price (real number).";
+        }catch (RuntimeException e){
+            //TODO create customError for Enums
+            return "Forth parameter should be one of Men, Women or Unisex.";
         }
 
     }
@@ -40,13 +54,12 @@ public class CreateProductCommand implements Command {
     private String createProduct(String name, String brand, double price, GenderType gender) {
         try {
             ValidationHelpers.validateProductNameIsUnique(productRepository, name);
+            productRepository.createProduct(name, brand, price, gender);
+
+            return String.format(PRODUCT_CREATED, name);
         } catch (InvalidInputException e) {
             return e.getMessage();
         }
-
-        productRepository.createProduct(name, brand, price, gender);
-
-        return String.format(PRODUCT_CREATED, name);
     }
 
 }

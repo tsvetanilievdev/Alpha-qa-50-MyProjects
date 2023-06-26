@@ -27,7 +27,7 @@ public class ProductImpl implements Product {
     }
 
     private void setName(String name) {
-        ValidationHelpers.validateIntegerRange("Product's name", name, MIN_LENGTH_PRODUCT_NAME, MAX_LENGTH_PRODUCT_NAME);
+        ValidationHelpers.validateIntegerRange("Product name", name, MIN_LENGTH_PRODUCT_NAME, MAX_LENGTH_PRODUCT_NAME);
         this.name = name;
     }
 
@@ -36,7 +36,7 @@ public class ProductImpl implements Product {
     }
 
     private void setBrand(String brand) {
-        ValidationHelpers.validateIntegerRange("Product's brand", brand, MIN_LENGTH_PRODUCT_BRAND, MAX_LENGTH_PRODUCT_BRAND);
+        ValidationHelpers.validateIntegerRange("Product brand", brand, MIN_LENGTH_PRODUCT_BRAND, MAX_LENGTH_PRODUCT_BRAND);
         this.brand = brand;
     }
 

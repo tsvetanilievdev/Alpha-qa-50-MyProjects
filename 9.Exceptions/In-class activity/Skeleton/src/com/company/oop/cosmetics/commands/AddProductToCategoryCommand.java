@@ -29,7 +29,7 @@ public class AddProductToCategoryCommand implements Command {
 
             return addProductToCategory(categoryNameToAdd, productNameToAdd);
         }catch (InvalidInputException e){
-            return String.format(String.format("AddProduct command expects %s parameters.",COUNT_OF_LIST_PARAMETERS));
+            return e.getMessage();
         }
 
 

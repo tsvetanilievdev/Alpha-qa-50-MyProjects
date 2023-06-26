@@ -23,7 +23,7 @@ public class CategoryImpl implements Category {
     }
 
     private void setName(String name) {
-        ValidationHelpers.validateIntegerRange("Category",name, MIN_LENGTH_CATEGORY_NAME,MAX_LENGTH_CATEGORY_NAME);
+        ValidationHelpers.validateIntegerRange("Category name",name, MIN_LENGTH_CATEGORY_NAME,MAX_LENGTH_CATEGORY_NAME);
         this.name = name;
     }
 

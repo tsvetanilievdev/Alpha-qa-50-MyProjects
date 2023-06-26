@@ -13,8 +13,8 @@ import java.util.List;
 
 public class ProductRepositoryImpl implements ProductRepository {
 
-    private static final String PRODUCT_DOES_NOT_EXIST = "Product %s does not exist!";
-    private static final String CATEGORY_DOES_NOT_EXIST = "Category %s does not exist!";
+    private static final String PRODUCT_DOES_NOT_EXIST = "Product %s does not exist.";
+    private static final String CATEGORY_DOES_NOT_EXIST = "Category %s does not exist.";
 
     private final List<Product> products;
     private final List<Category> categories;
