@@ -53,8 +53,13 @@ WHERE e.manager_id IS NOT NULL;
 SELECT DISTINCT d.name FROM departments d
 UNION
 SELECT DISTINCT t.name  FROM towns t;
--- 22. Write a SQL query to find all employees and their manager, along with the employees that do not have manager.If they do not have a manager, output "n/a".
--- TODO
+-- 22. Write a SQL query to find all employees and their manager, along with the employees that do not have manager.
+-- If they do not have a manager, output "n/a".
+SELECT e.employee_id, e.first_name, e.last_name,
+       COALESCE(m.first_name, 'n/a') AS manager_first_name,
+       COALESCE(m.last_name, 'n/a') AS manager_last_name
+FROM employees e
+         LEFT JOIN employees  m ON e.manager_id = m.employee_id;
 -- 23. Write a SQL query to find the names of all employees from the departments "Sales" AND "Finance" whose hire year is between 1995 and 2005.
 SELECT e.first_name as employee_first_name, e.last_name as employee_last_name
 FROM employees e JOIN departments d on e.department_id = d.department_id
