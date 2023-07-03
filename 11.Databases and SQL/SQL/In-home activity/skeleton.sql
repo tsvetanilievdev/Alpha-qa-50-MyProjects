@@ -28,19 +28,34 @@ SELECT * FROM employees WHERE manager_id IS NULL;
 -- 14. Write a SQL query to find the names of all employees who were hired before their managers.
 SELECT e.* FROM employees e INNER JOIN employees m ON e.manager_id = m.employee_id WHERE e.hire_date < m.hire_date;
 -- 15. Write a SQL query to find all employees whose salary is more than 50000. Order them in decreasing order, based on their salary.
-
+SELECT * FROM employees WHERE salary > 50000 ORDER BY salary DESC ;
 -- 16. Write a SQL query to find the top 5 best paid employees.
-
+SELECT * FROM employees WHERE salary > 50000 ORDER BY salary DESC LIMIT 5;
 -- 17. Write a SQL query that outputs all employees along their address.
-
+SELECT * FROM employees JOIN addresses a on employees.address_id = a.address_id;
 -- 18. Write a SQL query to find all employees whose middle name is the same as the first letter of their town.
-
+SELECT * FROM employees JOIN towns t on employees.address_id = t.town_id WHERE SUBSTRING(name,1,1) = SUBSTRING(employees.middle_name,1,1);
 -- 19. Write a SQL query that outputs all employees (first and last name) that have a manager, along with their manager (first and last name).
-
+SELECT e.first_name as employee_first_name, e.last_name as employee_last_name,
+       e2.first_name as manager_first_name, e2.last_name as manager_last_name
+FROM employees e
+JOIN employees e2 on e.manager_id = e2.employee_id
+WHERE e.manager_id IS NOT NULL;
 -- 20. Write a SQL query that outputs all employees that have a manager (first and last name), along with their manager (first and last name) and the employee's address.
-
+SELECT e.first_name as employee_first_name, e.last_name as employee_last_name,
+       e2.first_name as manager_first_name, e2.last_name as manager_last_name,
+       a.text as address
+FROM employees e
+         JOIN employees e2 on e.manager_id = e2.employee_id
+         JOIN addresses a on e.address_id = a.address_id
+WHERE e.manager_id IS NOT NULL;
 -- 21. Write a SQL query to find all departments and all town names in a single column.
-
--- 22. Write a SQL query to find all employees and their manager, along with the employees that do not have manager. If they do not have a manager, output "n/a".
-
+SELECT DISTINCT d.name FROM departments d
+UNION
+SELECT DISTINCT t.name  FROM towns t;
+-- 22. Write a SQL query to find all employees and their manager, along with the employees that do not have manager.If they do not have a manager, output "n/a".
+-- TODO
 -- 23. Write a SQL query to find the names of all employees from the departments "Sales" AND "Finance" whose hire year is between 1995 and 2005.
+SELECT e.first_name as employee_first_name, e.last_name as employee_last_name
+FROM employees e JOIN departments d on e.department_id = d.department_id
+WHERE d.name IN ('Sales');
