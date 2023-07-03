@@ -1,0 +1,2 @@
+INSERT INTO car_rental_system.reservations (reservation_id, start_date, end_date, price, car_category_id, pickup_location_id, drop_off_location_id, user_id) VALUES (1, '2023-07-04 10:10:00', '2023-07-06 19:00:00', 0, 1, 2, 2, 1);
+INSERT INTO car_rental_system.reservations (reservation_id, start_date, end_date, price, car_category_id, pickup_location_id, drop_off_location_id, user_id) VALUES (2, '2023-07-08 12:00:00', '2023-07-09 12:00:00', 0, 3, 4, 1, 2);
