@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "bfe665a8-fa57-4da9-8a21-6f2b1f5547d7",
+		"name": "Jira API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28729267"
+	},
+	"item": [
+		{
+			"name": "1. Create issue - type Story",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"issueStoryKey\", jsonData.key);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct key is returned\", function () {\r",
+							"    const projectKey = pm.environment.get(\"projectKey\");\r",
+							"    pm.expect(jsonData.key).contains(projectKey);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response has required fields\", function () {\r",
+							"    pm.expect(jsonData).to.be.an('object');\r",
+							"    pm.expect(jsonData.id).to.exist.and.to.be.a('string');\r",
+							"    pm.expect(jsonData.key).to.exist.and.to.be.a('string');\r",
+							"    pm.expect(jsonData.self).to.exist.and.to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"The id is non-empty string\", function () {\r",
+							"    pm.expect(jsonData).to.be.an('object');\r",
+							"    pm.expect(jsonData.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Key is a non-empty string\", function () {\r",
+							"    pm.expect(jsonData.key).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Self is a non-empty string\", function () {\r",
+							"    pm.expect(jsonData.self).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"key\": \"{{projectKey}}\"\r\n        },\r\n        \"issuetype\": {\r\n            \"id\": \"10006\"\r\n        },\r\n        \"summary\": \"{{titleStory}}\",\r\n        \"components\": [],\r\n        \"description\": {\r\n            \"version\": 1,\r\n            \"type\": \"doc\",\r\n            \"content\": [\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"User Story: \",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"As a user of \"\r\n                        },\r\n                        {\r\n                            \"type\": \"inlineCard\",\r\n                            \"attrs\": {\r\n                                \"url\": \"https://phptravels.net/\"\r\n                            }\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \", I want to be able to search for and book vacations, so that I can plan and enjoy my trips.\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Description:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"The platform to provide the functionality to search for various vacation options and book their preferred destinations. The system should offer an intuitive and user-friendly search interface, enabling users to filter vacations based on different criteria like destination, travel dates, budget, accommodation preferences, and activities. Once users find their desired vacation package, they should be able to book it seamlessly through the platform.  The platform must be available in English, Russian, German.\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Acceptance Criteria:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"orderedList\",\r\n                    \"attrs\": {\r\n                        \"order\": 1\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"The platform should have a prominent and accessible search bar on the homepage for users to initiate vacation searches.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Users should be able to enter their desired destination, travel dates, budget range, and other relevant filters to refine their search results.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"The search results page should display relevant vacation packages based on the user's search criteria.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Each vacation package on the search results page should provide essential details like destination, travel dates, accommodation options, activities, and total cost.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Users should have the option to view more details of a particular vacation package by clicking on it.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"The vacation details page should show a comprehensive overview of the selected package, including inclusions, exclusions, and any other relevant information.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Users should be able to proceed with the booking process directly from the vacation details page.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"During the booking process, users should be prompted to provide necessary information like personal details, payment details, and any specific requirements.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Upon successful booking, users should receive a confirmation message along with the booking details via email or on the platform itself.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Users should be able to access their booked vacation details and itinerary through their user account.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"The platform must be available in English, Russian, and German languages to cater to users from different regions.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Users should be able to easily switch between language options from the platform's interface.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"All text content, including navigation elements, search filters, vacation details, and booking steps, should be accurately translated and culturally appropriate in each supported language.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Date formats, currency symbols, and other localized elements should adhere to the conventions of the selected language and region.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Dependencies:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"bulletList\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Integration with a reliable vacation inventory and booking API.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"UI/UX design updates to accommodate the new search and booking features.\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Tasks:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"orderedList\",\r\n                    \"attrs\": {\r\n                        \"order\": 1\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Perform extensive testing for the search, filtering, booking, and user account features in different languages (Estimate: 5 days, Assignee: QA Engineer).\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Date: \",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"{{dateNow}}\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Environment:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"OS: \",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Windows \"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Browser: \",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Firefox Version 113.0.2\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Screen resolution\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \": 1920x1080 \"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        \"reporter\": {\r\n            \"id\": \"{{userId}}\"\r\n        },\r\n        \"fixVersions\": [],\r\n        \"priority\": {\r\n            \"id\": \"1\",\r\n            \"name\": \"Highest\",\r\n            \"iconUrl\": \"https://tsvetan-qa50.atlassian.net/images/icons/priorities/highest.svg\"\r\n        },\r\n        \"labels\": []\r\n    },\r\n    \"update\": {}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/3/issue",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.Create issue - type Bug",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"issueBugKey\",jsonData.key);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct key is returned\", function () {\r",
+							"    const projectKey = pm.environment.get(\"projectKey\");\r",
+							"    pm.expect(jsonData.key).contains(projectKey);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response has required fields\", function () {\r",
+							"    pm.expect(jsonData).to.be.an('object');\r",
+							"    pm.expect(jsonData.id).to.exist.and.to.be.a('string');\r",
+							"    pm.expect(jsonData.key).to.exist.and.to.be.a('string');\r",
+							"    pm.expect(jsonData.self).to.exist.and.to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"The id is a non-empty string\", function () {\r",
+							"    pm.expect(jsonData).to.be.an('object');\r",
+							"    pm.expect(jsonData.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Key is a non-empty string\", function () {\r",
+							"    pm.expect(jsonData.key).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Self is a non-empty string\", function () {\r",
+							"    pm.expect(jsonData.self).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"key\": \"{{projectKey}}\"\r\n        },\r\n        \"issuetype\": {\r\n            \"id\": \"10005\"\r\n        },\r\n        \"summary\": \"{{titleBug}}\",\r\n        \"components\": [],\r\n        \"description\": {\r\n            \"version\": 1,\r\n            \"type\": \"doc\",\r\n            \"content\": [\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Issue summary\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"As a user, I expected when Russian version of the website is loaded everything inside to be in Russian language instead of English\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Steps to reproduce:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"orderedList\",\r\n                    \"attrs\": {\r\n                        \"order\": 1\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Navigate to \"\r\n                                        },\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"https://www.phptravels.net/ru\",\r\n                                            \"marks\": [\r\n                                                {\r\n                                                    \"type\": \"link\",\r\n                                                    \"attrs\": {\r\n                                                        \"href\": \"https://www.phptravels.net/ru\"\r\n                                                    }\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Expected result:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"orderedList\",\r\n                    \"attrs\": {\r\n                        \"order\": 1\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"All text must be in Russian language\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Actual result:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"orderedList\",\r\n                    \"attrs\": {\r\n                        \"order\": 1\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Part of the website is in Russian, part of the website is on English\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Proposed solution:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Translate all elements to Russian\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Severity: \",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Critical\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        \"reporter\": {\r\n            \"id\": \"{{userId}}\"\r\n        },\r\n        \"fixVersions\": [],\r\n        \"priority\": {\r\n            \"name\": \"Highest\"\r\n        },\r\n        \"labels\": [],\r\n        \"versions\": []\r\n    },\r\n    \"update\": {}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/3/issue",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.Link issues - Bug with Task",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(pm.collectionVariables.get(\"issueStoryKey\"));\r",
+							"console.log(pm.collectionVariables.get(\"issueBugKey\"));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": {\r\n        \"id\": \"10000\"\r\n    },\r\n    \"inwardIssue\": {\r\n        \"key\": \"{{issueStoryKey}}\"\r\n    },\r\n    \"outwardIssue\": {\r\n        \"key\": \"{{issueBugKey}}\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/2/issueLink",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issueLink"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.Add attachment to Story",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response is not empty array\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array').that.is.not.empty;\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Size is a non-negative integer\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"\r",
+							"    jsonData.forEach(function (attachment) {\r",
+							"        pm.expect(attachment.size).to.be.a('number').and.to.be.at.least(0);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Atlassian-Token",
+						"value": "no-check",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/2/issue/{{issueStoryKey}}/attachments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{issueStoryKey}}",
+						"attachments"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{jiraTokenAPI}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{jiraUsername}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const date = new Date().toLocaleString();",
+					"pm.collectionVariables.set(\"dateNow\", date);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "dateNow",
+			"value": ""
+		},
+		{
+			"key": "issueStoryKey",
+			"value": "QAF-120"
+		},
+		{
+			"key": "issueBugKey",
+			"value": "QAF-119"
+		},
+		{
+			"key": "titleStory",
+			"value": "Find and Book Your Dream Vacations",
+			"type": "string"
+		},
+		{
+			"key": "titleBug",
+			"value": "Part of the website is shown on English although is Russian version",
+			"type": "string"
+		}
+	]
+}

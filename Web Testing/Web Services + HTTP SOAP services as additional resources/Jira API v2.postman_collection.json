@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "cd52dc3a-3a02-47ec-a353-41adbc5dda4e",
+		"name": "Jira API v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28729267"
+	},
+	"item": [
+		{
+			"name": "create issue - type Task",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tsvetanilievdev@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ATATT3xFfGF0cBfTLsq32Zv8RBEzXrYN3ZdUGyatpeqci1BsnuZaLvsYQfxWosAZQ2OBq3LLPBn8FPXDUjVHj833iXAqQXOM8D6wj7_Fb9XybCHzmWm1cyPDSm4N94DvVhb6JEruMt0Rr8CVb7wiqRjA7VTO3W0oFIu5yZZnxM4T8taIlARjt4U=220C1F44",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"id\": \"{{projectId}}\"\r\n        },\r\n        \"issuetype\": {\r\n            \"id\": \"{{issueTypeTask}}\"\r\n        },\r\n        \"summary\": \"{{summaryTask}}\",\r\n        \"components\": [],\r\n        \"description\": {\r\n            \"version\": 1,\r\n            \"type\": \"doc\",\r\n            \"content\": [\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Narrative/Description:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Logged user must be able \"\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"successfully \",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"to create new topic with\"\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \" valid input \",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"in required fields\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Preconditions: \",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Navigate to \"\r\n                        },\r\n                        {\r\n                            \"type\": \"inlineCard\",\r\n                            \"attrs\": {\r\n                                \"url\": \"https://stage-forum.telerikacademy.com/\"\r\n                            }\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \" \"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Already logged user\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Test steps:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"table\",\r\n                    \"attrs\": {\r\n                        \"isNumberColumnEnabled\": false,\r\n                        \"layout\": \"default\",\r\n                        \"localId\": \"8c1aa6d0-98f3-484d-8237-fe1d4e8cd868\"\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"tableRow\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"tableHeader\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            48\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"#\",\r\n                                                    \"marks\": [\r\n                                                        {\r\n                                                            \"type\": \"strong\"\r\n                                                        }\r\n                                                    ]\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableHeader\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            174\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"Test step name\",\r\n                                                    \"marks\": [\r\n                                                        {\r\n                                                            \"type\": \"strong\"\r\n                                                        }\r\n                                                    ]\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableHeader\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            112\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"Test data\",\r\n                                                    \"marks\": [\r\n                                                        {\r\n                                                            \"type\": \"strong\"\r\n                                                        }\r\n                                                    ]\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableHeader\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            346\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"Expected result\",\r\n                                                    \"marks\": [\r\n                                                        {\r\n                                                            \"type\": \"strong\"\r\n                                                        }\r\n                                                    ]\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"tableRow\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            48\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"1\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            174\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"Click on “\"\r\n                                                },\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"+ New Topic\",\r\n                                                    \"marks\": [\r\n                                                        {\r\n                                                            \"type\": \"strong\"\r\n                                                        }\r\n                                                    ]\r\n                                                },\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"“ button\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            112\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"-\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            346\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"To show Create a new topic Form\"\r\n                                                }\r\n                                            ]\r\n                                        },\r\n                                        {\r\n                                            \"type\": \"mediaSingle\",\r\n                                            \"attrs\": {\r\n                                                \"layout\": \"align-start\"\r\n                                            },\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"media\",\r\n                                                    \"attrs\": {\r\n                                                        \"id\": \"d8a062f0-468c-4cbb-9b73-5677ed6ff5f1\",\r\n                                                        \"type\": \"file\",\r\n                                                        \"collection\": \"\",\r\n                                                        \"width\": 928,\r\n                                                        \"height\": 487\r\n                                                    }\r\n                                                }\r\n                                            ]\r\n                                        },\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": []\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"tableRow\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            48\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"2\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            174\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"Add \"\r\n                                                },\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"title\",\r\n                                                    \"marks\": [\r\n                                                        {\r\n                                                            \"type\": \"strong\"\r\n                                                        }\r\n                                                    ]\r\n                                                },\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \" to first input field\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            112\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"My first topic\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            346\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"Title to be filled into the input field\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"tableRow\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            48\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"3\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            174\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"Add \"\r\n                                                },\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"content \",\r\n                                                    \"marks\": [\r\n                                                        {\r\n                                                            \"type\": \"strong\"\r\n                                                        }\r\n                                                    ]\r\n                                                },\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"into post input field - 10 word text.\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            112\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, doloremque.\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            346\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"The text to be filled into post input field\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"tableRow\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            48\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"4\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            174\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"Click on “\"\r\n                                                },\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"+ Create Topic\",\r\n                                                    \"marks\": [\r\n                                                        {\r\n                                                            \"type\": \"strong\"\r\n                                                        }\r\n                                                    ]\r\n                                                },\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"” button\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            112\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"-\"\r\n                                                }\r\n                                            ]\r\n                                        }\r\n                                    ]\r\n                                },\r\n                                {\r\n                                    \"type\": \"tableCell\",\r\n                                    \"attrs\": {\r\n                                        \"colwidth\": [\r\n                                            346\r\n                                        ]\r\n                                    },\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"Message “Saving…“ shown.\"\r\n                                                }\r\n                                            ]\r\n                                        },\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"text\",\r\n                                                    \"text\": \"Then redirect to newly created topic \"\r\n                                                }\r\n                                            ]\r\n                                        },\r\n                                        {\r\n                                            \"type\": \"mediaSingle\",\r\n                                            \"attrs\": {\r\n                                                \"layout\": \"align-start\"\r\n                                            },\r\n                                            \"content\": [\r\n                                                {\r\n                                                    \"type\": \"media\",\r\n                                                    \"attrs\": {\r\n                                                        \"id\": \"8b5679f8-d60e-444f-a443-a0394f4cdac0\",\r\n                                                        \"type\": \"file\",\r\n                                                        \"collection\": \"\",\r\n                                                        \"width\": 1581,\r\n                                                        \"height\": 855\r\n                                                    }\r\n                                                }\r\n                                            ]\r\n                                        },\r\n                                        {\r\n                                            \"type\": \"paragraph\",\r\n                                            \"content\": []\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Date:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"04/06/2023\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"heading\",\r\n                    \"attrs\": {\r\n                        \"level\": 3\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Environment:\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"OS: \",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Windows \"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Browser: \",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Firefox Version 113.0.2\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Screen resolution\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \": 1920x1080 \"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        \"reporter\": {\r\n            \"id\": \"{{userId}}\"\r\n        },\r\n        \"fixVersions\": [],\r\n        \"priority\": {\r\n            \"id\": {{priorityHighest}}\r\n        },\r\n        \"labels\": []\r\n    },\r\n    \"update\": {}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/3/issue",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create issue - type Bug",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tsvetanilievdev@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ATATT3xFfGF0cBfTLsq32Zv8RBEzXrYN3ZdUGyatpeqci1BsnuZaLvsYQfxWosAZQ2OBq3LLPBn8FPXDUjVHj833iXAqQXOM8D6wj7_Fb9XybCHzmWm1cyPDSm4N94DvVhb6JEruMt0Rr8CVb7wiqRjA7VTO3W0oFIu5yZZnxM4T8taIlARjt4U=220C1F44",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"id\": \"{{projectId}}\"\r\n        },\r\n        \"issuetype\": {\r\n            \"id\": \"{{issueTypeBug}}\"\r\n        },\r\n        \"summary\": \"{{summaryBug}}\",\r\n        \"components\": [],\r\n        \"description\": {\r\n            \"version\": 1,\r\n            \"type\": \"doc\",\r\n            \"content\": [\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Description:\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"As a user I can invalid year less than 1900\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Expected Result\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"orderedList\",\r\n                    \"attrs\": {\r\n                        \"order\": 1\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Expected result 1\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Expected result 2\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Actual Result\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"orderedList\",\r\n                    \"attrs\": {\r\n                        \"order\": 1\r\n                    },\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Actual result 1\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"listItem\",\r\n                            \"content\": [\r\n                                {\r\n                                    \"type\": \"paragraph\",\r\n                                    \"content\": [\r\n                                        {\r\n                                            \"type\": \"text\",\r\n                                            \"text\": \"Actual result 2\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        \"reporter\": {\r\n            \"id\": \"{{userId}}\"\r\n        },\r\n        \"fixVersions\": [],\r\n        \"priority\": {\r\n            \"id\": {{priorityLowest}}\r\n        },\r\n        \"labels\": [],\r\n        \"versions\": []\r\n    },\r\n    \"update\": {}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/3/issue",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Link issues - Bug with Task ",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{jiraUsername}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{jiraUsername}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": {\r\n        \"id\": \"10000\"\r\n    },\r\n    \"inwardIssue\": {\r\n        \"key\": \"QAF-13\"\r\n    },\r\n    \"outwardIssue\": {\r\n        \"key\": \"QAF-14\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/2/issueLink",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issueLink"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tsvetanilievdev@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ATATT3xFfGF0cBfTLsq32Zv8RBEzXrYN3ZdUGyatpeqci1BsnuZaLvsYQfxWosAZQ2OBq3LLPBn8FPXDUjVHj833iXAqQXOM8D6wj7_Fb9XybCHzmWm1cyPDSm4N94DvVhb6JEruMt0Rr8CVb7wiqRjA7VTO3W0oFIu5yZZnxM4T8taIlARjt4U=220C1F44",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/2/user?accountId=63c9718a2c6573abb08d8630",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"user"
+					],
+					"query": [
+						{
+							"key": "accountId",
+							"value": "63c9718a2c6573abb08d8630"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tsvetanilievdev@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ATATT3xFfGF0cBfTLsq32Zv8RBEzXrYN3ZdUGyatpeqci1BsnuZaLvsYQfxWosAZQ2OBq3LLPBn8FPXDUjVHj833iXAqQXOM8D6wj7_Fb9XybCHzmWm1cyPDSm4N94DvVhb6JEruMt0Rr8CVb7wiqRjA7VTO3W0oFIu5yZZnxM4T8taIlARjt4U=220C1F44",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/3/search?id=10064",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"search"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "10064"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get dashboards",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tsvetanilievdev@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ATATT3xFfGF0cBfTLsq32Zv8RBEzXrYN3ZdUGyatpeqci1BsnuZaLvsYQfxWosAZQ2OBq3LLPBn8FPXDUjVHj833iXAqQXOM8D6wj7_Fb9XybCHzmWm1cyPDSm4N94DvVhb6JEruMt0Rr8CVb7wiqRjA7VTO3W0oFIu5yZZnxM4T8taIlARjt4U=220C1F44",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/3/dashboard/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"dashboard",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create issue - type TEST",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tsvetanilievdev@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ATATT3xFfGF0cBfTLsq32Zv8RBEzXrYN3ZdUGyatpeqci1BsnuZaLvsYQfxWosAZQ2OBq3LLPBn8FPXDUjVHj833iXAqQXOM8D6wj7_Fb9XybCHzmWm1cyPDSm4N94DvVhb6JEruMt0Rr8CVb7wiqRjA7VTO3W0oFIu5yZZnxM4T8taIlARjt4U=220C1F44",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"id\": \"10004\"\r\n        },\r\n        \"issuetype\": {\r\n            \"id\": \"10007\"\r\n        },\r\n        \"summary\": \"Create issue - type Test\",\r\n        \"components\": [],\r\n        \"description\": {\r\n            \"version\": 1,\r\n            \"type\": \"doc\",\r\n            \"content\": [\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Logged user must be able \"\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"successfully\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \" to create new topic with \"\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"valid title, description and added category and tags\",\r\n                            \"marks\": [\r\n                                {\r\n                                    \"type\": \"strong\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"paragraph\",\r\n                    \"content\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Provided inputs are combination of latin characters, cyrillic characters, numbers and special symbols.\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        \"reporter\": {\r\n            \"id\": \"63c9718a2c6573abb08d8630\"\r\n        },\r\n        \"fixVersions\": [],\r\n        \"assignee\": {\r\n            \"id\": \"63c9718a2c6573abb08d8630\"\r\n        },\r\n        \"priority\": {\r\n            \"id\": \"3\",\r\n            \"name\": \"Medium\",\r\n            \"iconUrl\": \"https://tsvetan-qa50.atlassian.net/images/icons/priorities/medium.svg\"\r\n        },\r\n        \"labels\": []\r\n    },\r\n    \"update\": {},\r\n    \"watchers\": [\r\n        \"63c9718a2c6573abb08d8630\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/3/issue",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{jiraTokenAPI}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{jiraUsername}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://tsvetan-qa50.atlassian.net",
+			"type": "string"
+		},
+		{
+			"key": "priorityHighest",
+			"value": "\"1\"",
+			"type": "string"
+		},
+		{
+			"key": "priorityHigh",
+			"value": "\"2\"",
+			"type": "string"
+		},
+		{
+			"key": "priorityMedium",
+			"value": "\"3\"",
+			"type": "string"
+		},
+		{
+			"key": "priorityLow",
+			"value": "\"4\"",
+			"type": "string"
+		},
+		{
+			"key": "priorityLowest",
+			"value": "\"5\"",
+			"type": "string"
+		},
+		{
+			"key": "issueTypeTask",
+			"value": "10002",
+			"type": "string"
+		},
+		{
+			"key": "issueTypeBug",
+			"value": "10005",
+			"type": "string"
+		},
+		{
+			"key": "projectId",
+			"value": "10000",
+			"type": "string"
+		},
+		{
+			"key": "jiraUsername",
+			"value": "tsvetanilievdev@gmail.com",
+			"type": "string"
+		},
+		{
+			"key": "jiraTokenAPI",
+			"value": "ATATT3xFfGF0cBfTLsq32Zv8RBEzXrYN3ZdUGyatpeqci1BsnuZaLvsYQfxWosAZQ2OBq3LLPBn8FPXDUjVHj833iXAqQXOM8D6wj7_Fb9XybCHzmWm1cyPDSm4N94DvVhb6JEruMt0Rr8CVb7wiqRjA7VTO3W0oFIu5yZZnxM4T8taIlARjt4U=220C1F44",
+			"type": "string"
+		},
+		{
+			"key": "summaryTask",
+			"value": "Task title - with Postman",
+			"type": "string"
+		},
+		{
+			"key": "summaryBug",
+			"value": "Bug title - with Postman",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "63c9718a2c6573abb08d8630",
+			"type": "string"
+		}
+	]
+}
