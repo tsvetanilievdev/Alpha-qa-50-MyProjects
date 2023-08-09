@@ -1,4 +1,4 @@
-package com.telerikacademy.api.tests;
+package com.exam.trello.utils;
 
 public class Endpoints {
 
