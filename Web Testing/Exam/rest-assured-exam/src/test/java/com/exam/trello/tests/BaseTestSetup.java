@@ -4,7 +4,6 @@ import com.exam.trello.utils.Constants;
 import com.exam.trello.utils.Endpoints;
 import io.restassured.RestAssured;
 import io.restassured.config.EncoderConfig;
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeMethod;
 
