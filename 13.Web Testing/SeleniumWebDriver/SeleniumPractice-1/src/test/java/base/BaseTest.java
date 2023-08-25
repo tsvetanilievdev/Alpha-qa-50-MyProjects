@@ -31,7 +31,7 @@ public class BaseTest {
 
     @AfterAll
     public static void classTearDown() {
-//        driver.close();
+        driver.close();
     }
 
     public static WebDriver startWebBrowser(BrowserTypes type, boolean headless) {
