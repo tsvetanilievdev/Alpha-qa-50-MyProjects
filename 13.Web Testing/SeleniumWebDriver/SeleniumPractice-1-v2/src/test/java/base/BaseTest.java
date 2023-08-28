@@ -1,7 +1,9 @@
 package base;
 
 import org.example.BrowserTypes;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,14 +24,17 @@ public class BaseTest {
     protected static WebDriver driver;
     protected static WebDriverWait wait;
 
-    @BeforeEach
-    public static void classSetUp() {
+    @BeforeAll
+    public static void classSetUp(){
         driver = startWebBrowser(BrowserTypes.CHROME, false);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    }
+    @BeforeEach
+    public void navigate() {
         driver.get("https://www.saucedemo.com/");
     }
 
-    @AfterEach
+    @AfterAll
     public static void classTearDown() {
         driver.close();
     }
